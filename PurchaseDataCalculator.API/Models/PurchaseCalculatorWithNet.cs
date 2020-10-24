@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Extensions.DependencyInjection;
 using PurchaseDataCalculatorAPI.Interfaces;
 
 namespace PurchaseDataCalculatorAPI.Models
@@ -10,8 +11,8 @@ namespace PurchaseDataCalculatorAPI.Models
 
         public PurchaseCalculatorWithNet(decimal vatRate, decimal? netAmount, IServiceProvider serviceProvider)
         {
-            _grossCalculator = (IGrossCalculator)serviceProvider.GetService(typeof(IGrossCalculator));
-            _vatCalculator = (IVatCalculator)serviceProvider.GetService(typeof(IVatCalculator));
+            _grossCalculator = serviceProvider.GetService<IGrossCalculator>();
+            _vatCalculator = serviceProvider.GetService<IVatCalculator>();
             VatRate = vatRate;
             NetAmount = netAmount;
         }

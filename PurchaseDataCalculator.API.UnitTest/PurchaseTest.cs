@@ -232,11 +232,6 @@ namespace PurchaseDataCalculator.API.UnitTest
          InlineData(20, 120, 83.33, 16.67)]
         public async void CalculateAmountFromVatInvalid(decimal vatRate, decimal grossAmount, decimal netAmount, decimal vatAmount)
         {
-            /*
-             Amount are correct according to the https://www.calkoo.com/en/vat-calculator, however there could be a rounding problem
-            Further clarification should needed to see this data is correct or not
-             */
-
             // Arrange
             var serviceProvider = ServiceProvider();
             var purchaseProvider = new PurchaseProvider(null, serviceProvider);
