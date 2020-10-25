@@ -11,12 +11,16 @@ namespace PurchaseDataCalculatorAPI.Providers
     public class PurchaseProvider : IPurchaseProvider
     {
         private readonly ILogger<PurchaseProvider> _logger;
-        private readonly IServiceProvider _serviceProvider;
+        private readonly IGrossCalculator _grossCalculator;
+        private readonly IVatCalculator _vatCalculator;
+        private readonly INetCalculator _netCalculator;
 
-        public PurchaseProvider(ILogger<PurchaseProvider> logger, IServiceProvider serviceProvider)
+        public PurchaseProvider(ILogger<PurchaseProvider> logger, IGrossCalculator grossCalculator, IVatCalculator vatCalculator, INetCalculator netCalculator)
         {
             _logger = logger;
-            _serviceProvider = serviceProvider;
+            _grossCalculator = grossCalculator;
+            _vatCalculator = vatCalculator;
+            _netCalculator = netCalculator;
         }
 
         public Task<(bool IsSuccess, Purchase Purchase, string ErrorMessage)> GetPurchaseVatAsync(Purchase purchase)
@@ -33,13 +37,13 @@ namespace PurchaseDataCalculatorAPI.Providers
                 switch (purchase)
                 {
                     case { } p when p.GrossAmount != null && p.GrossAmount != 0:
-                        purchaseBase = new PurchaseCalculatorWithGross(purchase.VatRate, purchase.GrossAmount, _serviceProvider);
+                        purchaseBase = new PurchaseCalculatorWithGross(purchase.VatRate, purchase.GrossAmount, _netCalculator, _vatCalculator);
                         break;
                     case { } p when p.VatAmount != null && p.VatAmount != 0:
-                        purchaseBase = new PurchaseCalculatorWithVat(purchase.VatRate, purchase.VatAmount, _serviceProvider);
+                        purchaseBase = new PurchaseCalculatorWithVat(purchase.VatRate, purchase.VatAmount, _netCalculator, _grossCalculator);
                         break;
                     case { } p when p.NetAmount != null && p.NetAmount != 0:
-                        purchaseBase = new PurchaseCalculatorWithNet(purchase.VatRate, purchase.NetAmount, _serviceProvider);
+                        purchaseBase = new PurchaseCalculatorWithNet(purchase.VatRate, purchase.NetAmount, _grossCalculator, _vatCalculator);
                         break;
                 }
 

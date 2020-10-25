@@ -23,7 +23,8 @@ namespace PurchaseDataCalculator.API.UnitTest
         {
             // Arrange
             var serviceProvider = ServiceProvider();
-            var purchaseProvider = new PurchaseProvider(null, serviceProvider);
+            var purchaseProvider = new PurchaseProvider(null, serviceProvider.GetService<IGrossCalculator>()
+                , serviceProvider.GetService<IVatCalculator>(), serviceProvider.GetService<INetCalculator>());
 
 
             //Act
@@ -57,7 +58,8 @@ namespace PurchaseDataCalculator.API.UnitTest
         {
             // Arrange
             var serviceProvider = ServiceProvider();
-            var purchaseProvider = new PurchaseProvider(null, serviceProvider);
+            var purchaseProvider = new PurchaseProvider(null, serviceProvider.GetService<IGrossCalculator>()
+                , serviceProvider.GetService<IVatCalculator>(), serviceProvider.GetService<INetCalculator>());
 
             // Act
             var purchase = await purchaseProvider.GetPurchaseVatAsync(
@@ -84,7 +86,8 @@ namespace PurchaseDataCalculator.API.UnitTest
         {
             // Arrange
             var serviceProvider = ServiceProvider();
-            var purchaseProvider = new PurchaseProvider(null, serviceProvider);
+            var purchaseProvider = new PurchaseProvider(null, serviceProvider.GetService<IGrossCalculator>()
+                , serviceProvider.GetService<IVatCalculator>(), serviceProvider.GetService<INetCalculator>());
 
             // Act
             var purchase = await purchaseProvider.GetPurchaseVatAsync(
@@ -113,7 +116,8 @@ namespace PurchaseDataCalculator.API.UnitTest
         {
             // Arrange
             var serviceProvider = ServiceProvider();
-            var purchaseProvider = new PurchaseProvider(null, serviceProvider);
+            var purchaseProvider = new PurchaseProvider(null, serviceProvider.GetService<IGrossCalculator>()
+                , serviceProvider.GetService<IVatCalculator>(), serviceProvider.GetService<INetCalculator>());
 
             // Act
             var purchase = await purchaseProvider.GetPurchaseVatAsync(
@@ -147,7 +151,8 @@ namespace PurchaseDataCalculator.API.UnitTest
 
             // Arrange
             var serviceProvider = ServiceProvider();
-            var purchaseProvider = new PurchaseProvider(null, serviceProvider);
+            var purchaseProvider = new PurchaseProvider(null, serviceProvider.GetService<IGrossCalculator>()
+                , serviceProvider.GetService<IVatCalculator>(), serviceProvider.GetService<INetCalculator>());
 
             // Act
             var purchase = await purchaseProvider.GetPurchaseVatAsync(
@@ -176,7 +181,8 @@ namespace PurchaseDataCalculator.API.UnitTest
         {
             // Arrange
             var serviceProvider = ServiceProvider();
-            var purchaseProvider = new PurchaseProvider(null, serviceProvider);
+            var purchaseProvider = new PurchaseProvider(null, serviceProvider.GetService<IGrossCalculator>()
+                , serviceProvider.GetService<IVatCalculator>(), serviceProvider.GetService<INetCalculator>());
 
             // Act
             var purchase = await purchaseProvider.GetPurchaseVatAsync(
@@ -205,7 +211,8 @@ namespace PurchaseDataCalculator.API.UnitTest
         {
             // Arrange
             var serviceProvider = ServiceProvider();
-            var purchaseProvider = new PurchaseProvider(null, serviceProvider);
+            var purchaseProvider = new PurchaseProvider(null, serviceProvider.GetService<IGrossCalculator>()
+                , serviceProvider.GetService<IVatCalculator>(), serviceProvider.GetService<INetCalculator>());
 
             // Act
             var purchase = await purchaseProvider.GetPurchaseVatAsync(
@@ -234,7 +241,8 @@ namespace PurchaseDataCalculator.API.UnitTest
         {
             // Arrange
             var serviceProvider = ServiceProvider();
-            var purchaseProvider = new PurchaseProvider(null, serviceProvider);
+            var purchaseProvider = new PurchaseProvider(null, serviceProvider.GetService<IGrossCalculator>()
+                , serviceProvider.GetService<IVatCalculator>(), serviceProvider.GetService<INetCalculator>());
 
             // Act
             var purchase = await purchaseProvider.GetPurchaseVatAsync(

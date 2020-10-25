@@ -9,10 +9,10 @@ namespace PurchaseDataCalculatorAPI.Models
         private readonly INetCalculator _netCalculator;
         private readonly IGrossCalculator _grossCalculator;
 
-        public PurchaseCalculatorWithVat(decimal vatRate, decimal? vatAmount, IServiceProvider serviceProvider)
+        public PurchaseCalculatorWithVat(decimal vatRate, decimal? vatAmount, INetCalculator netCalculator, IGrossCalculator grossCalculator)
         {
-            _netCalculator = serviceProvider.GetService<INetCalculator>();
-            _grossCalculator = serviceProvider.GetService<IGrossCalculator>();
+            _netCalculator = netCalculator;
+            _grossCalculator = grossCalculator;
             VatRate = vatRate;
             VatAmount = vatAmount;
         }
